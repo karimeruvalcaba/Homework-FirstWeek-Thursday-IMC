@@ -8,10 +8,10 @@ def buscando_reflexion(relacion):
 
     for elemento in elementos:
         if (elemento,elemento) not in relacion:
-            return False
-    return True
+            return " no reflexiva"
+    return "reflexiva"
 
-def buscando_simetria(relacion):
+#def buscando_simetria(relacion):
     
       
 def main():
@@ -19,10 +19,10 @@ def main():
     relacion={(0,0),(0,1),(0,3),(1,0),(1,1),(2,2),(3,0),(3,3)}
 
     reflexiva=buscando_reflexion(relacion)
-    symetrica=buscando_simetria(relacion)
-    transitiva=buscando_transicion(relacion)
+    #symetrica=buscando_simetria(relacion)
+    #transitiva=buscando_transicion(relacion)
 
-    print(f"Reflexiva: {reflexiva}")
+    print(f"La relacion es: {reflexiva}")
 
 if __name__ == '__main__':
     main()

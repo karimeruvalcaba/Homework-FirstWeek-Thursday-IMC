@@ -1,0 +1,61 @@
+import graphviz # https://graphviz.readthedocs.io/en/stable/index.htmlimport graphviz 
+
+#Karime Itzel Ruvalcaba Pérez A01656188
+
+#-----------------------------REFLEXIVA--------------------------------------
+def buscando_reflexion(relacion):
+    elementos=set()
+    for par in relacion:
+        elementos.add(par[0])
+        elementos.add(par[1])
+
+    for elemento in elementos:
+        if (elemento,elemento) not in relacion:
+            return "no reflexiva"
+    return "reflexiva"
+
+#-----------------------------SIMETRICA--------------------------------------
+
+def buscando_simetria(relacion):
+    for par in relacion:
+        parReverso=(par[1],par[0])
+        if parReverso not in relacion:
+            return "no simetrica"
+    return "simetrica"
+    
+#-----------------------------TRANSITIVA--------------------------------------
+
+def buscando_transicion(relacion):
+    for primerPar in relacion:
+        for segundoPar in relacion:
+            if primerPar[1]==segundoPar[0] and (primerPar[0], segundoPar[1]) not in relacion:
+                return "no transitiva"
+    return "transitiva"
+
+#-----------------------------GRAFICA--------------------------------------
+
+def plot():
+  
+    g = graphviz.Digraph('G', filename='hola.gv')
+    g.edge('Hello', 'World')
+    g.view()
+
+
+def main():
+    
+    relacion={(0,0),(0,1),(0,3),(1,0),(1,1),(2,2),(3,0),(3,3)}
+
+    reflexiva=buscando_reflexion(relacion)
+    simetrica=buscando_simetria(relacion)
+    transitiva=buscando_transicion(relacion)
+
+    print(f"La relacion es: {reflexiva}")
+    print(f"La relacion es: {simetrica}")
+    print(f"La relacion es: {transitiva}")
+
+    plot()
+    
+
+if __name__ == '__main__':
+    main()
+

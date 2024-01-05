@@ -1,29 +1,36 @@
-#Karime Itzel Ruvalcaba Pérez A01656188
+import graphviz # https://graphviz.readthedocs.io/en/stable/index.html
 
-def buscando_reflexion(relacion):
-    elementos=set()
-    for par in relacion:
-        elementos.add(par[0])
-        elementos.add(par[1])
+def analyze(val):
+    """
+    Here goes your code to do the analysis
+    1. Reflexive: aRa for all a in X,
+    2. Symmetric: aRb implies bRa for all a,b in X
+    3. Transitive: aRb and bRc imply aRc for all a,b,c in X,
+    """
+    Reflexive = False
+    Symmetric = False
+    Transitive = False
 
-    for elemento in elementos:
-        if (elemento,elemento) not in relacion:
-            return " no reflexiva"
-    return "reflexiva"
+    return Reflexive,Symmetric,Transitive
 
-#def buscando_simetria(relacion):
-    
-      
+def plot():
+    """
+    Here goes your code to do the plot of the set
+    """
+    g = graphviz.Digraph('G', filename='hello.gv')
+    g.edge('Hello', 'World')
+    g.view()
+
 def main():
-    
-    relacion={(0,0),(0,1),(0,3),(1,0),(1,1),(2,2),(3,0),(3,3)}
+    print("Hello World analyzing input!")
+    val = input("Enter your set: ")
+    print(val)
+    Reflexive,Symmetric,Transitive = analyze(val)
+    print(f"\
+    1. Reflexive: {Reflexive} \
+    2. Symmetric: {Symmetric} \
+    3. Transitive: {Transitive}")
+    plot()
 
-    reflexiva=buscando_reflexion(relacion)
-    #symetrica=buscando_simetria(relacion)
-    #transitiva=buscando_transicion(relacion)
-
-    print(f"La relacion es: {reflexiva}")
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
-

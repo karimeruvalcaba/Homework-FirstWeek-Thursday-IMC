@@ -20,25 +20,14 @@ def plot(val):
     """
 
     # Create the graph
-    g = graphviz.Digraph('G', filename='graph.log')
-    g.attr(rankdir='LR', size='8,5')
-
+    dot= graphviz.Digraph('G', comment='graph.log')
     for i in val:
-        g.edge(str(i[0]), str(i[1]))
+        dot.edge(str(i[0]), str(i[1]))
 
+    print(dot.source)
     # Render the graph
-    g.view()
-
-    # Create the graph
-    g1 = graphviz.Digraph('G', filename='hello.gv')
-    g1.attr(rankdir='LR', size='8,5')
-
-    for i in val:
-        g1.edge(str(i[0]), str(i[1]))
-
-    # Render the graph
-    g1.view()
-
+    dot.render('doctest-output/graph.log').replace('\\','/')
+    dot.render('doctest-output/graph.log', view=True)
 
 def get_set(val):
     """

@@ -61,7 +61,7 @@ def plot(val):
 
 def get_set(val):
     """
-    Here goes your code to get the set from the input
+    How to put the input
     Example:
     {(0,0),(0,1),(0,3),(1,0),(1,1),(2,2),(3,0),(3,3)}
     { (0,0), (1,1), (1,0) }

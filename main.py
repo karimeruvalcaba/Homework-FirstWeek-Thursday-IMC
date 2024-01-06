@@ -1,6 +1,36 @@
 import ast
 import graphviz # https://graphviz.readthedocs.io/en/stable/index.html
 
+#-----------------------------REFLEXIVA--------------------------------------
+def buscando_reflexion(relacion):
+    elementos=set()
+    for par in relacion:
+        elementos.add(par[0])
+        elementos.add(par[1])
+
+    for elemento in elementos:
+        if (elemento,elemento) not in relacion:
+            return "no reflexiva"
+    return "reflexiva"
+
+#-----------------------------SIMETRICA--------------------------------------
+
+def buscando_simetria(relacion):
+    for par in relacion:
+        parReverso=(par[1],par[0])
+        if parReverso not in relacion:
+            return "no simetrica"
+    return "simetrica"
+    
+#-----------------------------TRANSITIVA--------------------------------------
+
+def buscando_transicion(relacion):
+    for primerPar in relacion:
+        for segundoPar in relacion:
+            if primerPar[1]==segundoPar[0] and (primerPar[0], segundoPar[1]) not in relacion:
+                return "no transitiva"
+    return "transitiva"
+
 def analyze(val):
     """
     Here goes your code to do the analysis
@@ -8,11 +38,11 @@ def analyze(val):
     2. Symmetric: aRb implies bRa for all a,b in X
     3. Transitive: aRb and bRc imply aRc for all a,b,c in X,
     """
-    Reflexive = False
-    Symmetric = False
-    Transitive = False
+    Reflexive = buscando_reflexion(val)
+    Symmetric = buscando_simetria(val)
+    Transitive = buscando_transicion(val)
 
-    return Reflexive,Symmetric,Transitive
+    return Reflexive, Symmetric, Transitive
 
 def plot(val):
     """
@@ -26,13 +56,14 @@ def plot(val):
 
     print(dot.source)
     # Render the graph
-    dot.render('doctest-output/graph.log').replace('\\','/')
-    dot.render('doctest-output/graph.log', view=True)
+    dot.view()
+
 
 def get_set(val):
     """
     Here goes your code to get the set from the input
-    Example: { (0,0), (0,1), (0,3), (1,0), (1,1), (2,2), (3,0), (3,3) }
+    Example:
+    {(0,0),(0,1),(0,3),(1,0),(1,1),(2,2),(3,0),(3,3)}
     { (0,0), (1,1), (1,0) }
     """
     result = None
